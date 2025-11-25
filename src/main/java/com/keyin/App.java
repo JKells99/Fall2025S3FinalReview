@@ -11,9 +11,16 @@ public class App {
         UserService userService = new UserService();
 
         Admin admin = new Admin("admin2", "password123", "admin2@school.com", "123-123-1233", 100000, true);
-        userService.saveNewUser(admin);
-        User searchedUser = userService.getUserByUserName("admin1");
+//        userService.saveNewUser(admin);
+        User userToLogIn = userService.logInToSystem("admin2", "password123");
 
-        System.out.println(searchedUser);
+        if(userToLogIn.getRole().equals("ADMIN")){
+            System.out.println("Logged in as admin");
+        }
+        if(userToLogIn.getRole().equals("STUDENT")){
+            System.out.println("Logged in as student");
+        }
+
+
     }
 }

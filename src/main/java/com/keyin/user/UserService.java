@@ -20,6 +20,21 @@ public class UserService {
         return userDao.getByUserName(userName);
     }
 
+    public boolean verifyPassword(String plainPassword, String hashedPassword) {
+        return BCrypt.checkpw(plainPassword, hashedPassword);
+    }
+    public User logInToSystem(String userName, String password) throws SQLException {
+        User user = getUserByUserName(userName);
+        if(verifyPassword(password, user.getPassword())){
+            System.out.println("Login Successful");
+            return user;
+
+        }else{
+            System.out.println("Login Failed");
+            return null;
+        }
+    }
+
 
 
 }
