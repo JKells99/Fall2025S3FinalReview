@@ -35,6 +35,14 @@ public class UserService {
         }
     }
 
+    public void getNumberOfStudentsForCampusByCampusId(int campusId) throws SQLException {
+        userDao.getNumberOfStudentsForCampusByCampusId(campusId);
+    }
+
+    public void getNumberOfStudentsForEachCampus() throws SQLException {
+        userDao.getNumberOfStudentsForEachCampus();
+    }
+
 
 
 }
