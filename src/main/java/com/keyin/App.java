@@ -8,28 +8,72 @@ import com.keyin.user.User;
 import com.keyin.user.UserService;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class App {
+    static CampusService campusService = new CampusService();
+    static UserService userService = new UserService();
     public static void main(String[] args) throws SQLException {
-        CampusService campusService = new CampusService();
-        UserService userService = new UserService();
 
 
-//        Admin admin = new Admin("admin3", "admin", "admin2@admin.com",1,"0123456789", 10000, true);
-//        userService.saveNewUser(admin);
-//
-//        Admin admin2 = new Admin("admin4", "admin2", "Admin4@admin.com",2,"0123456789", 10000, true);
-//        userService.saveNewUser(admin2);
+        User user;
 
-        Student student = new Student("student3", "student", "student@school.com","123-123123","Comp Sci",1,2);
-        userService.saveNewUser(student);
-        campusService.getAllCampuses();
+        Scanner scanner = new Scanner(System.in);
 
-        userService.getAllUsersByCampusId(1);
+        System.out.println("Welcome to the Campus Management System!");
+        System.out.println("Please select an option:");
+        System.out.println("1: Login");
+        System.out.println("2: Register");
+        int option = scanner.nextInt();
 
+        if(option == 1){
+            System.out.println("Please enter your username:");
+            String username = scanner.next();
+            System.out.println("Please enter your password:");
+            String password = scanner.next();
+            user = userService.logInToSystem(username, password);
+            if(user.getRole().equals("ADMIN")){
+                adminMenu(user,scanner);
+            }
+            else if(user.getRole().equals("STUDENT")){
+                studentMenu(user ,scanner);
+            }
+            else{
+                System.out.println("Invalid role");
+            }
 
+        } else if (option == 2){
+            System.out.println("Please enter your username:");
+            String username = scanner.next();
+            System.out.println("Please enter your password:");
+            String password = scanner.next();
+            System.out.println("Please enter your email:");
+            String email = scanner.next();
+            System.out.println("Please enter your phone number:");
+            String phone = scanner.next();
+            System.out.println("Please enter your campus ID:");
+            int campusId = scanner.nextInt();
+            System.out.println("Please enter your role (STUDENT or ADMIN):");
+            String role = scanner.next();
+            if(role.equals("STUDENT")){
+                Student student = new Student(username, password, email, phone, campusId);
+                userService.saveNewUser(student);
+            }
+            else if (role.equals("ADMIN")){
+                Admin admin = new Admin(username,password,email,campusId,phone);
+            }
 
+        }
 
+    }
+    private static void studentMenu(User user, Scanner scanner) {
+        System.out.println("Student Menu");
+    }
+
+    private static void adminMenu(User user, Scanner scanner) throws SQLException {
+        System.out.println("Admin Menu");
+        campusService.getNumberOfStudentsInCampus(2);
+        campusService.getNumberOfSchoolCampusesInSystem();
 
     }
 }

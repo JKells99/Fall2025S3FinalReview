@@ -21,4 +21,13 @@ public class CampusService {
     public Campus getCampusById(int campusId) throws SQLException {
         return campusDao.getCampusById(campusId);
     }
+
+    public void getNumberOfStudentsInCampus(int campusId) throws SQLException {
+        campusDao.getNumberOfStudentsInCampus(campusId);
+    }
+
+    public void getNumberOfSchoolCampusesInSystem() throws SQLException {
+        campusDao.getNumberOfCampuses();
+
+    }
 }

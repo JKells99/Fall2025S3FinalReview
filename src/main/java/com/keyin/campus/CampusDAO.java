@@ -67,4 +67,25 @@ public class CampusDAO {
 
     }
 
+    public void getNumberOfStudentsInCampus(int campusId) throws SQLException {
+     String sql = "SELECT COUNT(*) FROM users WHERE campus_id = ?";
+     Connection connection = DBConnection.getConnection();
+     var preparedStatement = connection.prepareStatement(sql);
+     preparedStatement.setInt(1, campusId);
+     var resultSet = preparedStatement.executeQuery();
+     resultSet.next();
+     System.out.println("There are " + resultSet.getInt(1) + " Students At Campus ID: " + campusId);
+     connection.close();
+    }
+
+    public void getNumberOfCampuses() throws SQLException {
+        String sql = "SELECT COUNT(*) FROM campus";
+        Connection connection = DBConnection.getConnection();
+        var preparedStatement = connection.prepareStatement(sql);
+        var resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        System.out.println("There are " + resultSet.getInt(1) + " Campuses");
+        connection.close();
+    }
+
 }

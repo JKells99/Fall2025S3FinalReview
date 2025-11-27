@@ -7,12 +7,6 @@ CREATE TABLE users (
    role            varchar(50) NOT NULL DEFAULT 'student'
 );
 
--- Create a table for the campus based on the provoded object in the campus.java file
--- private int campusId;
---     private String campusName;
---     private String address;
---     private String phone;
-
 CREATE TABLE campus (
    campusId         serial PRIMARY KEY,
    campusName       varchar(100) NOT NULL,
@@ -22,5 +16,6 @@ CREATE TABLE campus (
 
 -- create a update script for users that adds a campus_id column
 ALTER TABLE users ADD COLUMN campus_id INT;
+
 
 

@@ -2,7 +2,7 @@ package com.keyin.user;
 
 public class Admin extends User{
 
-    public Admin(String userName, String password, String email,int campusId ,String phone, double salary, boolean isProfessor) {
+    public Admin(String userName, String password, String email,int campusId ,String phone) {
         super(userName, password, email, phone, campusId,"ADMIN");
     }
 
