@@ -37,6 +37,7 @@ public class UserDao {
                 user.setPassword(resultSet.getString("password"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPhone(resultSet.getString("phone"));
+                user.setCampusId(resultSet.getInt("campusid"));
                 user.setRole(resultSet.getString("role"));
                 return user;
             }

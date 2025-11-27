@@ -31,7 +31,7 @@ public class App {
 
 //        Student student = new Student("John", "Doe", "student@student.com", "1234567890", 1);
 //        userService.saveNewUser(student);
-        User user = new User();
+        User user = null;
         Scanner scanner = new Scanner(System.in);
 
         displayWelcomeMenu(scanner,user);
