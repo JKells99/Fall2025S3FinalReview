@@ -35,6 +35,11 @@ public class UserService {
         }
     }
 
+    public void getAllUsersByCampusId(int campusId) throws SQLException {
+        System.out.println("Getting all users by campus id");
+        userDao.getALlUsersByCampusId(campusId);
+    }
+
 
 
 }
