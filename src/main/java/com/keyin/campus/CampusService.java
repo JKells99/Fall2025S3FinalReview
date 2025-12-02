@@ -1,11 +1,13 @@
 package com.keyin.campus;
 
+import com.keyin.logger.Logger;
+
 public class CampusService {
 
     CampusDAO campusDao = new CampusDAO();
 
     public void saveNewCampus(Campus campus) {
-        System.out.println("Saving new campus to database..." + campus.getCampusName());
+        Logger.infoLog("Saving new campus: " + campus.getCampusName());
         campusDao.saveNewCampusToDb(campus);
     }
 

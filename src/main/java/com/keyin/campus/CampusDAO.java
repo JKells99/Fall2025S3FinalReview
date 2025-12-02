@@ -1,6 +1,7 @@
 package com.keyin.campus;
 
 import com.keyin.database.DBConnection;
+import com.keyin.logger.Logger;
 import com.keyin.user.User;
 
 import java.sql.SQLException;
@@ -52,6 +53,7 @@ public class CampusDAO {
             System.out.println("Campus deleted successfully" + " with id: " + id);
         } catch (SQLException e) {
             e.printStackTrace();
+            Logger.errorLog(e.getMessage());
         }
     }
 
@@ -67,6 +69,7 @@ public class CampusDAO {
             System.out.println("Campus updated successfully" + " with id: " + id);
         } catch (SQLException e) {
             e.printStackTrace();
+            Logger.errorLog(e.getMessage());
         }
     }
 }
