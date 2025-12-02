@@ -1,6 +1,7 @@
 package com.keyin.user;
 
 import com.keyin.database.DBConnection;
+import com.keyin.logger.Logger;
 
 import java.sql.SQLException;
 
@@ -20,6 +21,8 @@ public class UserDao {
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+            String message = "Error saving user to database In DAO";
+            Logger.errorLog( message + e.getMessage());
         }
     }
 
@@ -37,7 +40,7 @@ public class UserDao {
                 user.setPassword(resultSet.getString("password"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPhone(resultSet.getString("phone"));
-                user.setCampusId(resultSet.getInt("campusid"));
+                user.setCampusId(resultSet.getInt("campus_id"));
                 user.setRole(resultSet.getString("role"));
                 return user;
             }
@@ -56,6 +59,7 @@ public class UserDao {
             if (resultSet.next()) {
                 System.out.println("Number of students in campus: " + resultSet.getInt(1));
             }
+            resultSet.close();
         }
     }
 
@@ -68,6 +72,7 @@ public class UserDao {
             while (resultSet.next()) {
                 System.out.println("Campus ID: " + resultSet.getInt(1) + " Number of students: " + resultSet.getInt(2));
             }
+            Logger.traceLog("Report generated successfully");
         }
     }
 
